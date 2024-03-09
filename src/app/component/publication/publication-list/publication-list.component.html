@@ -390,7 +390,58 @@
 
 
           <!--- \\\\\\\Post-->
-          <div class="col-11">
+          <div class="col-10">
+            <div class="card gedf-card">
+              <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="me-2">
+                      <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                    </div>
+                    <div class="me-2">
+                      <div class="h5 m-0">@LeeCross</div>
+                      <div class="h7 text-muted">Miracles Lee Cross</div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="dropdown">
+                      <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-ellipsis-h"></i>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                        <div class="h6 dropdown-header">Configuration</div>
+                        <a class="dropdown-item" href="#">Save</a>
+                        <a class="dropdown-item" href="#">Hide</a>
+                        <a class="dropdown-item" href="#">Report</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="card-body" style="padding: 18px 18px 0px 18px !important">
+                <div class="text-muted h7" > <i class="fa fa-clock-o"></i> 10 min ago</div>
+                <a class="card-link" href="#">
+                  <h5 class="card-title" style="padding: 0px !important; display:inline; font-size: 14px">Lorem ipsum </h5>
+                </a>
+
+                <p class="card-text" style="display: inline; font-size: 13px">{{ isTruncated ? truncatedText : fullText }}</p>
+                <p (click)="toggleTruncate()" style="font-size: 13px;color:grey;cursor: pointer">{{ buttonText }}</p>
+
+                <img src="https://w0.peakpx.com/wallpaper/110/906/HD-wallpaper-hazard-football-players-real-madrid.jpg" style="width:100%;max-height:520px; border-radius:5px" alt="">
+              </div>
+              <div class="card-footer" style="cursor:pointer; border-top:none!important">
+                <a  class="card-link" style="color: #012970d4;padding-left: 2px;" (click)="changeLikeIconColor(iconElement)"><i #iconElement class="fa fa-gittip" ></i>  Like</a>
+                <a class="card-link" style="color: #012970d4;"><i class="fa fa-comment" ></i> Comment</a>
+                <a  class="card-link" style="color: #012970d4;"><i class="fa fa-mail-forward"></i> Share</a>
+              </div>
+            </div>
+          </div>
+          <!-- Post /////-->
+
+
+          <!--- \\\\\\\Post-->
+          <div class="col-10">
             <div class="card gedf-card">
               <div class="card-header">
                 <div class="d-flex justify-content-between align-items-center">
@@ -422,15 +473,15 @@
               <div class="card-body">
                 <div class="text-muted h7 my-2" > <i class="fa fa-clock-o"></i> 10 min ago</div>
                 <a class="card-link" href="#">
-                  <h5 class="card-title" style="padding: 0px !important;">Lorem ipsum dolor sit amet, consectetur adip.</h5>
+                  <h5 class="card-title" style="padding: 0px !important; display:inline; font-size: 14px">Lorem ipsum </h5>
                 </a>
 
-                <p class="card-text">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa praesentium esse magnam nemo dolor
-                  sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates.
-                </p>
+                <p class="card-text" style="display: inline; font-size: 13px">{{ isTruncated ? truncatedText : fullText }}</p>
+                <p (click)="toggleTruncate()" style="font-size: 13px;color:grey;cursor: pointer">{{ buttonText }}</p>
+
+                <img src="https://c4.wallpaperflare.com/wallpaper/764/505/66/baby-groot-4k-hd-superheroes-wallpaper-preview.jpg" style="width:100%;max-height:520px; border-radius:5px" alt="">
               </div>
-              <div class="card-footer">
+              <div class="card-footer" style="cursor:pointer">
                 <a  class="card-link" style="color: #012970d4;"><i #iconElement class="fa fa-gittip" (click)="changeLikeIconColor(iconElement)"  style="font-size:18px"></i>  Like</a>
                 <a class="card-link" style="color: #012970d4;"><i class="fa fa-comment" style="font-size:18px"></i> Comment</a>
                 <a  class="card-link" style="color: #012970d4;"><i class="fa fa-mail-forward" style="font-size:17px"></i> Share</a>
@@ -440,60 +491,8 @@
           <!-- Post /////-->
 
 
-
           <!--- \\\\\\\Post-->
-          <div class="col-11">
-            <div class="card gedf-card">
-              <div class="card-header">
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="me-2">
-                      <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
-                    </div>
-                    <div class="me-2">
-                      <div class="h5 m-0">@LeeCross</div>
-                      <div class="h7 text-muted">Miracles Lee Cross</div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="dropdown">
-                      <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-ellipsis-h"></i>
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
-                        <div class="h6 dropdown-header">Configuration</div>
-                        <a class="dropdown-item" href="#">Save</a>
-                        <a class="dropdown-item" href="#">Hide</a>
-                        <a class="dropdown-item" href="#">Report</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="card-body">
-                <div class="text-muted h7 my-2" > <i class="fa fa-clock-o"></i>10 min ago</div>
-                <a class="card-link" href="#">
-                  <h5 class="card-title" style="padding: 0px !important;">Lorem ipsum dolor sit amet, consectetur adip.</h5>
-                </a>
-
-                <p class="card-text">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa praesentium esse magnam nemo dolor
-                  sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates.
-                </p>
-              </div>
-              <div class="card-footer">
-                <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
-                <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-                <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
-              </div>
-            </div>
-          </div>
-          <!-- Post /////-->
-
-
-          <!--- \\\\\\\Post-->
-          <div class="col-11">
+          <div class="col-10">
             <div class="card gedf-card">
               <div class="card-header">
                 <div class="d-flex justify-content-between align-items-center">
