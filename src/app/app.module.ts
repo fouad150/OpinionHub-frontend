@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PublicationListComponent} from "./component/publication/publication-list/publication-list.component";
 import {AddEditPublicationComponent} from "./component/publication/add-edit-publication/add-edit-publication.component";
@@ -14,6 +14,7 @@ import {CommunityListComponent} from "./component/community/community-list/commu
 import {LoginComponent} from "./component/user/login/login.component";
 import {RegisterComponent} from "./component/user/register/register.component";
 import {ProfileComponent} from "./component/user/profile/profile.component";
+import {AuthInterceptor} from "./core/interceptors/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,11 @@ import {ProfileComponent} from "./component/user/profile/profile.component";
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

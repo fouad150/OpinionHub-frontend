@@ -32,4 +32,13 @@ export class UserService {
   saveRole(role:string){
     this.cookieService.set('role',role);
   }
+
+  getJwtFromCookies():string {
+    return this.cookieService.get('jwt-cookie');
+  }
+
+  getRoleFromCookies(): string {
+    return this.cookieService.get('role');
+  }
+
 }

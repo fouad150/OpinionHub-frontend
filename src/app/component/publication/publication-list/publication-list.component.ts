@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit,} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {PublicationService} from "../../../service/publication.service";
 
 @Component({
   selector: 'app-publication-list',
@@ -10,7 +11,7 @@ import {ActivatedRoute} from "@angular/router";
 export class PublicationListComponent implements OnInit{
   icon: any = {};
   iconChecked:boolean=false;
-  constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef, private publicationService:PublicationService) {
   }
 
   changeLikeIconColor(element: HTMLElement) {
@@ -25,6 +26,8 @@ export class PublicationListComponent implements OnInit{
 
   }
 
+
+  /*show more or less*/
   isTruncated: boolean = true;
   truncatedText: string = '';
   fullText: string = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa praesentium esse magnam nemo dolor sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates.`;
@@ -52,5 +55,33 @@ export class PublicationListComponent implements OnInit{
     } else {
       this.truncatedText = this.fullText;
     }
+  }
+
+
+  /*add post*/
+  postData = {
+    text: '',
+    image: null as File | null
+  };
+
+  onFileSelected(event: any) {
+    this.postData.image = event.target.files[0];
+  }
+
+  onSubmit() {
+    console.log(1);
+    const formData = new FormData();
+    formData.append('text', this.postData.text);
+    if (this.postData.image) {
+      formData.append('image', this.postData.image);
+    }
+    this.publicationService.createPublication(formData).subscribe(
+    response => {
+        console.log('Post added successfully:', response);
+      },
+      error => {
+        console.error('Error adding post:', error);
+      }
+    );
   }
 }
