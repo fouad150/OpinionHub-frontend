@@ -20,7 +20,6 @@ export class AuthInterceptor implements HttpInterceptor {
         Authorization: `Bearer ${jwtToken}`,
       },
     });
-    console.log("token:"+authReq.headers.get("Authorization"));
 
     return next.handle(authReq);
   }

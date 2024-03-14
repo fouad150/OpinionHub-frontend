@@ -437,7 +437,7 @@
                     </div>
 
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit" style="background-color: #4154f1;font-weight: 500;">Save</button>
+                      <button class="btn btn-primary w-100" type="submit" style="background-color: #4154f1;font-weight: 500;"> Save </button>
                     </div>
                   </form>
                 </div>
@@ -449,109 +449,64 @@
 
 
           <!--- \\\\\\\Post-->
-          <div class="col-10">
-            <div class="card gedf-card">
-              <div class="card-header" style="padding:10px">
-                <div class="d-flex justify-content-between align-items-center">
+          <div class="col-10" *ngFor="let publication of publications">
+            <div>
+              <div class="card gedf-card">
+                <div class="card-header" style="padding:10px">
                   <div class="d-flex justify-content-between align-items-center">
-                    <div class="me-2">
-                      <img class="rounded-circle" width="42" style=" border: #798eb3 2px solid;" src="https://picsum.photos/50/50" alt="">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="me-2">
+                        <img class="rounded-circle" width="42" style=" border: #798eb3 2px solid;" src="https://picsum.photos/50/50" alt="">
+                      </div>
+                      <div class="me-2">
+                        <div class=" m-0">{{publication.userName}}</div>
+                      </div>
                     </div>
-                    <div class="me-2">
-                      <div class=" m-0">LeeCross</div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="dropdown">
-                      <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-ellipsis-h"></i>
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
-                        <div class="h6 dropdown-header">Configuration</div>
-                        <a class="dropdown-item" href="#">Save</a>
-                        <a class="dropdown-item" href="#">Hide</a>
-                        <a class="dropdown-item" href="#">Report</a>
+                    <div>
+                      <div class="dropdown">
+                        <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fa fa-ellipsis-h"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                          <div class="h6 dropdown-header">Configuration</div>
+                          <a class="dropdown-item" href="#">Save</a>
+                          <a class="dropdown-item" href="#">Hide</a>
+                          <a class="dropdown-item" href="#">Report</a>
+                        </div>
                       </div>
                     </div>
                   </div>
+
                 </div>
+                <div class="card-body" style="padding: 18px 18px 0px 18px !important">
+                  <div class="text-muted h7" > <i class="fa fa-clock-o"></i> 10 min ago</div>
+                  <div>
+                    <a class="card-link" href="#">
+                      <h5 class="card-title" style="padding: 0px !important; display:inline; font-size: 14px">{{publication.userName}} </h5>
+                    </a>
+                    <p class="card-text" style="display: inline; font-size: 13px">{{ publication.displayText }}</p>
+                    <p class="mb-0"  (click)="toggleText(publication)" *ngIf="publication.text.length > 75" style="font-size: 13px;color:grey;cursor: pointer">
+                      {{ publication.displayText === publication.text ? 'Show less' : 'Show more' }}
+                    </p>
+                  </div>
 
-              </div>
-              <div class="card-body" style="padding: 18px 18px 0px 18px !important">
-                <div class="text-muted h7" > <i class="fa fa-clock-o"></i> 10 min ago</div>
-                <a class="card-link" href="#">
-                  <h5 class="card-title" style="padding: 0px !important; display:inline; font-size: 14px">Lorem ipsum </h5>
-                </a>
-
-                <p class="card-text" style="display: inline; font-size: 13px">{{ isTruncated ? truncatedText : fullText }}</p>
-                <p (click)="toggleTruncate()" style="font-size: 13px;color:grey;cursor: pointer">{{ buttonText }}</p>
-
-                <img src="https://w0.peakpx.com/wallpaper/110/906/HD-wallpaper-hazard-football-players-real-madrid.jpg" style="width:100%;max-height:520px; border-radius:5px" alt="">
-              </div>
-              <div class="card-footer" style="cursor:pointer; border-top:none!important;padding-top: 4px;padding-bottom:20px">
-                <a  class="card-link" style="color: #012970d4;padding-left: 2px;font-size: 24px" (click)="changeLikeIconColor(iconElement)"><i #iconElement class="fa fa-gittip" ></i>  </a>
-                <a class="card-link" style="color: #012970d4;font-size: 26px;margin-left: 20px;"><i class="fa fa-commenting-o" ></i> </a>
-                <a  class="card-link" style="color: #012970d4;font-size: 23px;margin-left: 20px;"><i class="fa fa-send-o"></i> </a>
-                <div style="padding-left: 2px;font-size: 13px;color: #34353a;font-weight: 600;">25 likes</div>
+                  <img class="mt-3" [src]=" 'data:image/png;base64,' + publication.base64Image"  style="width:100%;max-height:520px; border-radius:5px" alt="">
+                </div>
+                <div class="card-footer" style="cursor:pointer; border-top:none!important;padding-top: 4px;padding-bottom:20px">
+                  <a  class="card-link" style="color: #012970d4;padding-left: 2px;font-size: 24px" (click)="changeLikeIconColor(iconElement)"><i #iconElement class="fa fa-gittip" ></i>  </a>
+                  <a class="card-link" style="color: #012970d4;font-size: 26px;margin-left: 20px;"><i class="fa fa-commenting-o" ></i> </a>
+                  <a  class="card-link" style="color: #012970d4;font-size: 23px;margin-left: 20px;"><i class="fa fa-send-o"></i> </a>
+                  <div style="padding-left: 2px;font-size: 13px;color: #34353a;font-weight: 600;">25 likes</div>
+                </div>
               </div>
             </div>
           </div>
           <!-- Post /////-->
 
 
-          <!--- \\\\\\\Post-->
-          <div class="col-10">
-            <div class="card gedf-card">
-              <div class="card-header" style="padding:10px">
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="me-2">
-                      <img class="rounded-circle" width="42" style=" border: #798eb3 2px solid;" src="https://picsum.photos/50/50" alt="">
-                    </div>
-                    <div class="me-2">
-                      <div class=" m-0">LeeCross</div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="dropdown">
-                      <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-ellipsis-h"></i>
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
-                        <div class="h6 dropdown-header">Configuration</div>
-                        <a class="dropdown-item" href="#">Save</a>
-                        <a class="dropdown-item" href="#">Hide</a>
-                        <a class="dropdown-item" href="#">Report</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="card-body" style="padding: 18px 18px 0px 18px !important">
-                <div class="text-muted h7" > <i class="fa fa-clock-o"></i> 10 min ago</div>
-                <a class="card-link" href="#">
-                  <h5 class="card-title" style="padding: 0px !important; display:inline; font-size: 14px">Lorem ipsum </h5>
-                </a>
-
-                <p class="card-text" style="display: inline; font-size: 13px">{{ isTruncated ? truncatedText : fullText }}</p>
-                <p (click)="toggleTruncate()" style="font-size: 13px;color:grey;cursor: pointer">{{ buttonText }}</p>
-
-                <img src="https://w0.peakpx.com/wallpaper/820/600/HD-wallpaper-mesut-ozil-arsenal-ramadan-kareem.jpg" style="width:100%;max-height:520px; border-radius:5px" alt="">
-              </div>
-              <div class="card-footer" style="cursor:pointer; border-top:none!important;padding-top: 4px;padding-bottom:20px">
-                <a  class="card-link" style="color: #012970d4;padding-left: 2px;font-size: 24px" (click)="changeLikeIconColor(iconElement)"><i #iconElement class="fa fa-gittip" ></i>  </a>
-                <a class="card-link" style="color: #012970d4;font-size: 26px;margin-left: 20px;"><i class="fa fa-commenting-o" ></i> </a>
-                <a  class="card-link" style="color: #012970d4;font-size: 23px;margin-left: 20px;"><i class="fa fa-send-o"></i> </a>
-                <div style="padding-left: 2px;font-size: 13px;color: #34353a;font-weight: 600;">25 likes</div>
-              </div>
-            </div>
-          </div>
-          <!-- Post /////-->
-
 
           <!--- \\\\\\\Post-->
-          <div class="col-10">
+          <!--<div class="col-10">
             <div class="card gedf-card">
               <div class="card-header" style="padding:10px">
                 <div class="d-flex justify-content-between align-items-center">
@@ -597,7 +552,7 @@
                 <div style="padding-left: 2px;font-size: 13px;color: #34353a;font-weight: 600;">25 likes</div>
               </div>
             </div>
-          </div>
+          </div>-->
           <!-- Post /////-->
 
 

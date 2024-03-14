@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit,} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {PublicationService} from "../../../service/publication.service";
 
 @Component({
@@ -11,7 +11,7 @@ import {PublicationService} from "../../../service/publication.service";
 export class PublicationListComponent implements OnInit{
   icon: any = {};
   iconChecked:boolean=false;
-  constructor(private elementRef: ElementRef, private publicationService:PublicationService) {
+  constructor(private elementRef: ElementRef, private publicationService:PublicationService,private router:Router) {
   }
 
   changeLikeIconColor(element: HTMLElement) {
@@ -28,16 +28,49 @@ export class PublicationListComponent implements OnInit{
 
 
   /*show more or less*/
-  isTruncated: boolean = true;
+  /*isTruncated: boolean = true;
   truncatedText: string = '';
-  fullText: string = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa praesentium esse magnam nemo dolor sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates.`;
-  buttonText: string = '...more';
+  fullText: string = '';
+  buttonText: string = '...more';*/
+
+
 
   ngOnInit(): void {
+/*
     this.truncateText();
+*/
+    this.getPublications();
   }
 
-  toggleTruncate(): void {
+  getPublications(): void {
+    this.publicationService.getPublications().subscribe(publications => {
+      this.publications = publications;
+      // Truncate long texts
+      this.publications.forEach(publication => {
+        publication.displayText = this.truncateText(publication.text, 75);
+      });
+    });
+  }
+
+  truncateText(text: string, maxLength: number): string {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + '...';
+    } else {
+      return text;
+    }
+  }
+
+  toggleText(publication: any): void {
+    if (publication.displayText === publication.text) {
+      // If full text is displayed, show truncated text
+      publication.displayText = this.truncateText(publication.text, 75);
+    } else {
+      // If truncated text is displayed, show full text
+      publication.displayText = publication.text;
+    }
+  }
+
+  /*toggleTruncate(): void {
     this.isTruncated = !this.isTruncated;
     if (this.isTruncated) {
       this.truncateText();
@@ -51,12 +84,20 @@ export class PublicationListComponent implements OnInit{
   truncateText(): void {
     const words = this.fullText.split(' ');
     if (words.length > 15) {
-      this.truncatedText = words.slice(0, 15).join(' ') /*+ '...'*/;
+      this.truncatedText = words.slice(0, 15).join(' ') /!*+ '...'*!/;
     } else {
       this.truncatedText = this.fullText;
     }
-  }
+  }*/
 
+  //get publications
+  publications: any[]=[];
+
+ /* getPublications(): void {
+    this.publicationService.getPublications().subscribe(publications => {
+      this.publications = publications;
+    });
+  }*/
 
   /*add post*/
   postData = {
@@ -69,17 +110,23 @@ export class PublicationListComponent implements OnInit{
   }
 
   onSubmit() {
-    console.log(1);
     const formData = new FormData();
     formData.append('text', this.postData.text);
+    if(this.postData.text == undefined){
+      this.postData.text=="";
+    }
     if (this.postData.image) {
       formData.append('image', this.postData.image);
     }
+
     this.publicationService.createPublication(formData).subscribe(
     response => {
+        this.publications.push(response.publication);
+        window.location.href = 'http://localhost:4200/publications';
         console.log('Post added successfully:', response);
       },
       error => {
+        alert(error.error.detail)
         console.error('Error adding post:', error);
       }
     );

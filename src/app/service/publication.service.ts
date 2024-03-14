@@ -12,11 +12,10 @@ export class PublicationService {
 
   constructor(private http: HttpClient) { }
 
-  getPublications(): Observable<Publication[]>{
-    return this.http.get<Publication[]>(`${this.baseUrl}`);
+  getPublications(): Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}`);
   }
   createPublication(formData:FormData ): Observable<any> {
-    console.log("add publication")
     return this.http.post<any>(`${this.baseUrl}`, formData);
   }
 

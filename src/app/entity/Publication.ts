@@ -2,16 +2,16 @@ import {User} from "./User";
 
 export class Publication{
   id:number;
-  content:string;
-  publicationType:string;
-  votes:string;
+  text:string;
+  image:File;
+  likes:number;
   user:User;
 
-  constructor(id: number, content: string, publicationType: string, votes: string, user: User) {
+  constructor(id: number, text: string, image:File, likes:number, user: User) {
     this.id = id;
-    this.content = content;
-    this.publicationType = publicationType;
-    this.votes = votes;
+    this.text = text;
+    this.image = image;
+    this.likes = likes;
     this.user = user;
   }
 }
