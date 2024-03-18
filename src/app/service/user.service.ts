@@ -40,5 +40,8 @@ export class UserService {
   getRoleFromCookies(): string {
     return this.cookieService.get('role');
   }
+  getEmailCookies(): string {
+    return this.cookieService.get('email');
+  }
 
 }
