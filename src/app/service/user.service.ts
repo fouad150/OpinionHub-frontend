@@ -13,8 +13,8 @@ export class UserService {
   constructor(private http:HttpClient, private cookieService:CookieService) {
   }
 
-  register(name:string, username:string,email: string, password: string,role:string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/register`, { name,username,email, password,role})
+  register(formData:FormData): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}`, formData)
   }
 
   login(email: string, password: string): Observable<any> {
