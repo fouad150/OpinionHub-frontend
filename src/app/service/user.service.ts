@@ -14,7 +14,7 @@ export class UserService {
   }
 
   register(formData:FormData): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}`, formData)
+    return this.http.post<any>(`${this.apiUrl}/register`, formData)
   }
 
   login(email: string, password: string): Observable<any> {
@@ -29,12 +29,31 @@ export class UserService {
     this.cookieService.set('email',email);
   }
 
+  saveUsedName(usedName:string){
+    this.cookieService.set('usedName',usedName);
+  }
+
   saveRole(role:string){
     this.cookieService.set('role',role);
   }
 
+ /* saveProfile(profile:string){
+    this.cookieService.set('profile',profile);
+  }*/
+
+  saveProfile(profile: string): void {
+    localStorage.setItem('profile', profile); // Save the base64 image in local storage
+  }
+  getProfile(): string | null {
+    return localStorage.getItem('profile'); // Retrieve the base64 image from local storage
+  }
+
   getJwtFromCookies():string {
     return this.cookieService.get('jwt-cookie');
+  }
+
+  getUsedName():string {
+    return this.cookieService.get('usedName');
   }
 
   getRoleFromCookies(): string {
@@ -43,5 +62,8 @@ export class UserService {
   getEmailCookies(): string {
     return this.cookieService.get('email');
   }
+  /*getProfileFromCookies(): string {
+    return this.cookieService.get('profile');
+  }*/
 
 }
